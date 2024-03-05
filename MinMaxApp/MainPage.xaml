@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MinMaxApp.MainPage">
+             x:Class="MinMaxApp.MainPage"
+             BackgroundColor="#ECEDED">
+             
 
     <ScrollView>
         <VerticalStackLayout
@@ -13,16 +15,16 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
-         
-
             <Label
                 Text="Hello, World!"
                 Style="{StaticResource Headline}"
+                TextColor="Black"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
                 Text="Welcome to &#10;.NET Multi-platform App UI"
                 Style="{StaticResource SubHeadline}"
+                TextColor="Black"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
