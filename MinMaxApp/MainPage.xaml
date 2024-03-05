@@ -11,29 +11,51 @@
             Spacing="25">
             <Image
                 Source="minmax.png"
-                HeightRequest="105"
-                Aspect="AspectFit"
+                HeightRequest="400"
+                Aspect="Center"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
             <Label
-                Text="Hello, World!"
+                Text="Sveiki!"
                 Style="{StaticResource Headline}"
+                FontAttributes="Bold"
                 TextColor="Black"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
+                Text="Mūsų priminimai.  Jūsų ramybei."
                 Style="{StaticResource SubHeadline}"
                 TextColor="Black"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
+            <Label
+                Text="Jūsų sveikatai."
+                Style="{StaticResource SubHeadline}"
+                TextColor="Black"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />           
+
             <Button
                 x:Name="CounterBtn"
-                Text="Proceed for 5.99$" 
+                Text="Prijungti dėžutę" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+                TextColor="White"
+                BackgroundColor="#3EB489"
+                HorizontalOptions="Center" 
+                WidthRequest="200"
+                />
+
+            <Button
+                x:Name="NoBoxButton"
+                Text="Neturi dėžutes? Tęsti be dėžutės" 
+                SemanticProperties.Hint="No box functionality"
+                TextColor="White"
+                BackgroundColor="Gray"
+                HorizontalOptions="Fill" 
+                
+                />
         </VerticalStackLayout>
     </ScrollView>
 
