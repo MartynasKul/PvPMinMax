@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MinMaxApp.ChooseConnectionPage"
+             BackgroundColor="#ECEDED">
+
+
+    <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            
+        <Label
+                Text="Pasirinkite prisijungimo būdą"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"
+                TextColor="Black"
+            />
+        <Image
+                Source="box_preview.png"
+                HeightRequest="300"
+                Aspect="AspectFit"
+                SemanticProperties.Description="box_preview.png" />
+
+        <Button
+                x:Name="bluetoothButton"
+                Text="Bluetooth" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                WidthRequest="200"
+                HorizontalOptions="Center" 
+                TextColor="White"
+                BackgroundColor="#3EB489"
+                Clicked="bluetoothButton_Clicked"
+                />
+
+
+        <Button
+                x:Name="wifiButton"
+                Text="Wi-Fi" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                WidthRequest="200"
+                HorizontalOptions="Center" 
+                TextColor="White"
+                BackgroundColor="#3EB489"
+                Clicked="wifiButton_Clicked"
+                />
+    </VerticalStackLayout>
+
+</ContentPage>
