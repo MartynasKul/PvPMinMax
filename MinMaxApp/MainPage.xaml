@@ -51,6 +51,7 @@
                 x:Name="NoBoxButton"
                 Text="Neturi dėžutes? Tęsti be dėžutės" 
                 SemanticProperties.Hint="No box functionality"
+                Clicked="HomeClicked"
                 TextColor="White"
                 BackgroundColor="Gray"
                 HorizontalOptions="Fill" 

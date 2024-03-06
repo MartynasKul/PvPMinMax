@@ -19,11 +19,15 @@ namespace MinMaxApp
         private void wifiButton_Clicked(object sender, EventArgs e)
         {
             wifiButton.Text = "Wi-Fi chosen";
+
+            Navigation.PushAsync(new HomePage()); // pereina i homescreen
         }
 
         private void bluetoothButton_Clicked(object sender, EventArgs e)
         {
             bluetoothButton.Text = "Bluetooth chosen";
+
+            Navigation.PushAsync(new HomePage()); // pereina i homescreen
         }
     }
 

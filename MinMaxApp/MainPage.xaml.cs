@@ -12,6 +12,10 @@
         {
             Navigation.PushAsync(new ChooseConnectionPage());
         }
+        private void HomeClicked(object sender, EventArgs e) 
+        {
+            Navigation.PushAsync(new HomePage()); // pereina i homescreen
+        }
     }
 
 }
