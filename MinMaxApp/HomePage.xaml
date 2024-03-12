@@ -17,7 +17,7 @@
                  />
 
             <Label
-                Text="Sveiki!"
+                Text="Laba diena!"
                 Style="{StaticResource Headline}"
                 FontAttributes="Bold"
                 TextColor="Black"

@@ -16,14 +16,14 @@
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
             <Label
-                Text="Sveiki!"
+                Text="Laba diena!"
                 Style="{StaticResource Headline}"
                 FontAttributes="Bold"
                 TextColor="Black"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Mūsų priminimai.  Jūsų ramybei."
+                Text="Mūsų priminimai."
                 Style="{StaticResource SubHeadline}"
                 TextColor="Black"
                 SemanticProperties.HeadingLevel="Level2"
