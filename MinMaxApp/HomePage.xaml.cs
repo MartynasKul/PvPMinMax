@@ -9,7 +9,7 @@ public partial class HomePage : ContentPage
 
 	private void OpenSettings(object sender, EventArgs e) 
 	{
-        Navigation.PushAsync(new Settings()); // pereina i homescreen
+        Navigation.PushAsync(new SettingsPage()); // pereina i homescreen
     }
 	private void OnMed1Clicked(object sender, EventArgs e) 
 	{

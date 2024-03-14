@@ -7,7 +7,7 @@
              >
     <StackLayout>
 
-        <ImageButton Clicked="" Source="arrow_left.png" HeightRequest="35" HorizontalOptions="Start" Margin="20"/>
+        <ImageButton Clicked="ReturnToHomePage" Source="arrow_left.png" HeightRequest="35" HorizontalOptions="Start" Margin="20"/>
 
         <Label Grid.Row="0"
        Grid.ColumnSpan="2"
