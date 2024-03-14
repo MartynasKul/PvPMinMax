@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MinMaxApp.SettingsPage"
+             Title="SettingsPage"
+             BackgroundColor="#ECEDED"
+             >
+    <StackLayout>
+
+        <ImageButton Clicked="" Source="arrow_left.png" HeightRequest="35" HorizontalOptions="Start" Margin="20"/>
+
+        <Label Grid.Row="0"
+       Grid.ColumnSpan="2"
+       HorizontalOptions="Center"
+       VerticalOptions="Center"
+       Text="Priminimų nustatymai"
+       FontAttributes="Bold"
+       TextColor="Black"
+       FontSize="28"/>
+
+        
+        <Frame Margin="15"
+               BackgroundColor="White"
+               BorderColor="White">
+            
+            <Grid RowDefinitions="40, 40, 40, 40"
+              ColumnDefinitions="0.75*,0.25*"
+              >
+
+                <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" TextColor="Black" Text="Garsinis priminimas"/>
+                <Switch Grid.Row="0" Grid.Column="1" OnColor="#3EB489" HorizontalOptions="EndAndExpand"/>
+                <BoxView Grid.Row="0" Grid.ColumnSpan="2" HeightRequest="1" Color="#3EB489" Margin="0, 40, 0, 0" />
+
+                <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" TextColor="Black" Text="Vibracinis priminimas"/>
+                <Switch Grid.Row="1" Grid.Column="1" IsToggled="True" OnColor="#3EB489" HorizontalOptions="End"/>
+                <BoxView Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="1" Color="#3EB489" Margin="0, 40, 0, 0" />
+
+                <Label Grid.Row="2" Grid.Column="0" VerticalOptions="Center" TextColor="Black" Text="Vibracinio priminimo laikas"/>
+                <Label Grid.Row="2" Grid.Column="1" VerticalOptions="Center" TextColor="Black" Text="30 s" HorizontalOptions="Start"/>
+                <BoxView Grid.Row="2" Grid.ColumnSpan="2" HeightRequest="1" Color="#3EB489" Margin="0, 40, 0, 0" />
+
+                <Label Grid.Row="3" Grid.Column="0" VerticalOptions="Center" TextColor="Black"  Text="Programėlės pranešimai"/>
+                <Switch Grid.Row="3" Grid.Column="1" OnColor="#3EB489" HorizontalOptions="End"/>
+            </Grid>
+        </Frame>
+    </StackLayout>
+
+
+</ContentPage>
