@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MinMaxApp.MainPage">
+             x:Class="MinMaxApp.MainPage"
+             BackgroundColor="#ECEDED">
+             
 
     <ScrollView>
         <VerticalStackLayout
@@ -9,29 +11,52 @@
             Spacing="25">
             <Image
                 Source="minmax.png"
-                HeightRequest="105"
-                Aspect="AspectFit"
+                HeightRequest="400"
+                Aspect="Center"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
-         
-
             <Label
-                Text="Hello, World!"
+                Text="Laba diena!"
                 Style="{StaticResource Headline}"
+                FontAttributes="Bold"
+                TextColor="Black"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
+                Text="Mūsų priminimai."
                 Style="{StaticResource SubHeadline}"
+                TextColor="Black"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
+            <Label
+                Text="Jūsų sveikatai."
+                Style="{StaticResource SubHeadline}"
+                TextColor="Black"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />           
+
             <Button
                 x:Name="CounterBtn"
-                Text="Proceed for 5.99$" 
+                Text="Prijungti dėžutę" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+                TextColor="White"
+                BackgroundColor="#3EB489"
+                HorizontalOptions="Center" 
+                WidthRequest="200"
+                />
+
+            <Button
+                x:Name="NoBoxButton"
+                Text="Neturi dėžutes? Tęsti be dėžutės" 
+                SemanticProperties.Hint="No box functionality"
+                Clicked="HomeClicked"
+                TextColor="White"
+                BackgroundColor="Gray"
+                HorizontalOptions="Fill" 
+                
+                />
         </VerticalStackLayout>
     </ScrollView>
 

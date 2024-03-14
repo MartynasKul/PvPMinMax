@@ -5,6 +5,9 @@
         public AppShell()
         {
             InitializeComponent();
+
+            // What does this do idk yet
+            Routing.RegisterRoute(nameof(ChooseConnectionPage), typeof(ChooseConnectionPage));
         }
     }
 }
