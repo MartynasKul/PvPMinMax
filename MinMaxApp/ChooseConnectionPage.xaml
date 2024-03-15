@@ -4,14 +4,13 @@
              x:Class="MinMaxApp.ChooseConnectionPage"
              BackgroundColor="#ECEDED">
 
-
     <VerticalStackLayout
             Padding="30,0"
             Spacing="25"
             Margin="20"
         >
-            
-            
+
+
         <Label
                 Text="Pasirinkite prisijungimo būdą"
                 Style="{StaticResource Headline}"
@@ -47,5 +46,6 @@
                 Clicked="wifiButton_Clicked"
                 />
     </VerticalStackLayout>
+
 
 </ContentPage>

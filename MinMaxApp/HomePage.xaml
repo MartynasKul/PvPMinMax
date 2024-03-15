@@ -11,9 +11,10 @@
             Padding="30,0"
             Spacing="25">
             <Image
-                Source="minmax.png"
-                HeightRequest="300"
+                Source="minmaxnotext.png"
+                HeightRequest="150"
                 Aspect="Center"
+                Margin="15"
                  />
 
             <Label
@@ -77,7 +78,7 @@
                         HeightRequest="100"
                         WidthRequest="100"
                         />
-                    
+
                     <Button
                         Text="Med4"
                         x:Name="Med4Button"
@@ -106,7 +107,7 @@
                         HeightRequest="100"
                         WidthRequest="100"
                         />
-                    
+
                     <Button
                         Text="Med6"
                         x:Name="Med6Button"
@@ -120,7 +121,7 @@
                         HeightRequest="100"
                         WidthRequest="100"
                         />
-                    
+
                     <Button
                         Text="Med7"
                         x:Name="Med7Button"
@@ -147,10 +148,10 @@
                         HeightRequest="100"
                         WidthRequest="100"
                         />
-                    
+
                 </Grid>
             </StackLayout>
-
+            <!--
             <Button
                 x:Name="SettingsButton"
                 Text="Nustatymai" 
@@ -162,6 +163,7 @@
                 HorizontalOptions="Fill" 
                 
                 />
+                -->
         </VerticalStackLayout>
     </ScrollView>
 

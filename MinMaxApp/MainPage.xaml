@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MinMaxApp.MainPage"
              BackgroundColor="#ECEDED">
-             
+
 
     <ScrollView>
         <VerticalStackLayout
@@ -23,18 +23,18 @@
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Mūsų priminimai."
+                Text="Mūsų priminimai"
                 Style="{StaticResource SubHeadline}"
                 TextColor="Black"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
             <Label
-                Text="Jūsų sveikatai."
+                Text="Jūsų sveikatai"
                 Style="{StaticResource SubHeadline}"
                 TextColor="Black"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />           
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
 
             <Button
                 x:Name="CounterBtn"
@@ -49,10 +49,10 @@
 
             <Button
                 x:Name="NoBoxButton"
-                Text="Neturi dėžutes? Tęsti be dėžutės" 
+                Text="Neturi dėžutes? Tęsti be dėžutės"
                 SemanticProperties.Hint="No box functionality"
-                Clicked="HomeClicked"
                 TextColor="White"
+                Clicked="HomeClicked"
                 BackgroundColor="Gray"
                 HorizontalOptions="Fill" 
                 

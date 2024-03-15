@@ -7,11 +7,11 @@
 
     <ScrollView>
         <VerticalStackLayout
-            Padding="30,0"
+            Padding="15"
             Spacing="25">
             <Image
-                Source="minmax.png"
-                HeightRequest="300"
+                Source="minmaxnotext.png"
+                HeightRequest="200"
                 Aspect="Center"
                  />
 
@@ -23,8 +23,8 @@
                 SemanticProperties.HeadingLevel="Level1" />
 
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                
-                <Label Text="Vaistų pavadinimas" TextColor="Black"/>
+
+                <Label Text="Vaistų pavadinimas" TextColor="Black" HorizontalTextAlignment="Center"/>
                 <Frame
                     CornerRadius="10"
                     BorderColor="#2B5B54"
@@ -34,11 +34,11 @@
                     
                     >
 
-                    <Entry Placeholder="Įveskite pavadinimą" TextColor="White"/>
-                    
+                    <Entry Placeholder="Įveskite pavadinimą" TextColor="White" x:Name="MedName"/>
+
                 </Frame>
 
-                <Label Text="Priminimo vaistų kiekis" TextColor="Black"/>
+                <Label Text="Priminimo vaistų kiekis" TextColor="Black" HorizontalTextAlignment="Center"/>
                 <Frame
                     CornerRadius="10"
                     BorderColor="#2B5B54"
@@ -47,14 +47,22 @@
                     Margin="5"
                     
                     >
+                    <StackLayout>
+                        <Slider Minimum="0" Maximum="25" BackgroundColor="#2B5B54" ValueChanged="MedAmmountChanged"/>
+                        <Label x:Name="medAmmount"
+                        
+                            Text=""
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                               TextColor="White"/>
 
-                    <Entry Placeholder="Įveskite kiekį" TextColor="White"/>
-                    
+
+                    </StackLayout>
                 </Frame>
 
-                <Label Text="Priminimo laikas" TextColor="Black"/>
+                <Label Text="Priminimo laikas" TextColor="Black" HorizontalTextAlignment="Center"/>
 
-                <Label Text="Kartų per dieną" TextColor="Black" />
+                <Label Text="Kartų per dieną" TextColor="Black" HorizontalTextAlignment="Center"/>
                 <Frame
                     CornerRadius="10"
                     BorderColor="#2B5B54"
@@ -63,19 +71,33 @@
                     Margin="5"
     
                     >
+                    <StackLayout>
 
-                    <Entry Placeholder="Įveskite kiekį" TextColor="White"/>
+
+                        <Slider Minimum="0" Maximum="25" BackgroundColor="#2B5B54" ValueChanged="ReminderAmmountChanged"/>
+                        <Label x:Name="remAmmount"
+                            Text=""
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" 
+                               TextColor="White"/>
+                    </StackLayout>
 
                 </Frame>
+
+
+
+
+
+
             </StackLayout>
 
 
             <Button
-                x:Name="BackButton"
+                x:Name="SaveButton"
                 Text="Išsaugoti" 
                 WidthRequest="200"
                 SemanticProperties.Hint="AppSettings"
-                Clicked="BackButtonClicked"
+                Clicked="SaveButtonClicked"
                 TextColor="White"
                 BackgroundColor="#2B5B54"
                 HorizontalOptions="Fill" 

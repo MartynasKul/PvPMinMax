@@ -8,8 +8,9 @@ public partial class SettingsPage : ContentPage
 
 	}
 
-    private void ReturnToHomePage(object sender, EventArgs e)
+    private async void ReturnToHomePage(object sender, EventArgs e)
     {
         Navigation.PushAsync(new HomePage());
+        await Shell.Current.GoToAsync("//HomePage");
     }
 }

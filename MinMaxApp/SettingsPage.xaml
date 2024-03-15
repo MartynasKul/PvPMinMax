@@ -6,23 +6,27 @@
              BackgroundColor="#ECEDED"
              >
     <StackLayout>
-
+        <!--
         <ImageButton Clicked="ReturnToHomePage" Source="arrow_left.png" HeightRequest="35" HorizontalOptions="Start" Margin="20"/>
+        -->
 
         <Label Grid.Row="0"
-       Grid.ColumnSpan="2"
-       HorizontalOptions="Center"
-       VerticalOptions="Center"
-       Text="Priminimų nustatymai"
-       FontAttributes="Bold"
-       TextColor="Black"
-       FontSize="28"/>
+            Grid.ColumnSpan="2"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Text="Priminimų nustatymai"
+            FontAttributes="Bold"
+            TextColor="Black"
+            FontSize="28"
+            Padding="15"
+               />
 
-        
+
         <Frame Margin="15"
                BackgroundColor="White"
-               BorderColor="White">
-            
+               BorderColor="White"
+               >
+
             <Grid RowDefinitions="40, 40, 40, 40"
               ColumnDefinitions="0.75*,0.25*"
               >
