@@ -1,16 +1,35 @@
-namespace MinMaxApp;
+using Plugin.LocalNotification;
 
+namespace MinMaxApp;
 public partial class HomePage : ContentPage
 {
 	public HomePage()
 	{
 		InitializeComponent();
+        LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
+        
 	}
+
+    private void Current_NotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
+    {
+        if (e.IsDismissed)
+        {
+            LocalNotificationCenter.Current.CancelAll();
+        }
+        else if (e.IsTapped) 
+        {
+            LocalNotificationCenter.Current.CancelAll();
+        }
+        
+        throw new NotImplementedException();
+    }
 
     private void OpenSettings(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SettingsPage()); // pereina i homescreen
     }
+
+
 
 
 
@@ -20,6 +39,29 @@ public partial class HomePage : ContentPage
         string originalName = Med1Button.Text;
 
         Med1Button.Text = originalName + " Pressed";
+
+
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med1Button.Text ,
+            Description = Med1Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
+
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
@@ -32,6 +74,27 @@ public partial class HomePage : ContentPage
 
         Med2Button.Text = originalName + " Pressed";
 
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med2Button.Text,
+            Description = Med2Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
+        
+
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
         //Navigation.PushAsync(new SectionSettings());
@@ -43,6 +106,25 @@ public partial class HomePage : ContentPage
 
         Med3Button.Text = originalName + " Pressed";
 
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med3Button.Text,
+            Description = Med3Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
         //Navigation.PushAsync(new SectionSettings());
@@ -54,6 +136,25 @@ public partial class HomePage : ContentPage
 
         Med4Button.Text = originalName + " Pressed";
 
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med4Button.Text,
+            Description = Med4Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
         //Navigation.PushAsync(new SectionSettings());
@@ -64,6 +165,26 @@ public partial class HomePage : ContentPage
         string originalName = Med5Button.Text;
 
         Med5Button.Text = originalName + " Pressed";
+
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med5Button.Text,
+            Description = Med5Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
@@ -76,6 +197,26 @@ public partial class HomePage : ContentPage
 
         Med6Button.Text = originalName + " Pressed";
 
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med6Button.Text,
+            Description = Med6Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
+
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
         //Navigation.PushAsync(new SectionSettings());
@@ -87,6 +228,26 @@ public partial class HomePage : ContentPage
 
         Med7Button.Text = originalName + " Pressed";
 
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med7Button.Text,
+            Description = Med7Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
+
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
         //Navigation.PushAsync(new SectionSettings());
@@ -97,6 +258,26 @@ public partial class HomePage : ContentPage
         string originalName = Med8Button.Text;
 
         Med8Button.Text = originalName + " Pressed";
+
+        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        var request = new NotificationRequest
+        {
+            NotificationId = 1,
+            Title = "BEMEBO",
+            Subtitle = Med8Button.Text,
+            Description = Med8Button.Text + " skilties atidarymas",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(10),
+
+                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                // galima dadedti kada repeatinti n shit
+
+            }
+        };
+
+        LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
