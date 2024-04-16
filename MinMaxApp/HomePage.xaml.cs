@@ -1,9 +1,11 @@
 using Plugin.LocalNotification;
+using System.Diagnostics;
 
 namespace MinMaxApp;
 public partial class HomePage : ContentPage
 {
     ESPController controller = new ESPController("http://192.168.4.1");
+    
 	public HomePage()
 	{
 		InitializeComponent();
@@ -36,6 +38,7 @@ public partial class HomePage : ContentPage
 
         Med1Button.Text = originalName + " Pressed";
         controller.DisplayNumber(1);
+        Debug.WriteLine("ABOBA"+controller.DisplayNumber(1));
         
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
