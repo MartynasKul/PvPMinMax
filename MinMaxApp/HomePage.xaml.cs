@@ -3,11 +3,11 @@ using Plugin.LocalNotification;
 namespace MinMaxApp;
 public partial class HomePage : ContentPage
 {
+    ESPController controller = new ESPController("http://192.168.4.1");
 	public HomePage()
 	{
 		InitializeComponent();
-        LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
-        
+        LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped; 
 	}
 
     private void Current_NotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
@@ -29,18 +29,14 @@ public partial class HomePage : ContentPage
         Navigation.PushAsync(new SettingsPage()); // pereina i homescreen
     }
 
-
-
-
-
     private async void OnMed1Clicked(object sender, EventArgs e)
     {
         string buttonId = "b1";
         string originalName = Med1Button.Text;
 
         Med1Button.Text = originalName + " Pressed";
-
-
+        controller.DisplayNumber(1);
+        
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -52,9 +48,9 @@ public partial class HomePage : ContentPage
             
             Schedule = new NotificationRequestSchedule
             {
-                NotifyTime = DateTime.Now.AddSeconds(10),
+                NotifyTime = DateTime.Now.AddSeconds(2),
 
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
+                NotifyRepeatInterval = TimeSpan.FromSeconds(2)
                 // galima dadedti kada repeatinti n shit
 
             }
@@ -74,6 +70,7 @@ public partial class HomePage : ContentPage
 
         Med2Button.Text = originalName + " Pressed";
 
+        controller.DisplayNumber(2);
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -106,6 +103,7 @@ public partial class HomePage : ContentPage
 
         Med3Button.Text = originalName + " Pressed";
 
+        controller.DisplayNumber(3);
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -136,6 +134,7 @@ public partial class HomePage : ContentPage
 
         Med4Button.Text = originalName + " Pressed";
 
+        controller.DisplayNumber(4);
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -166,6 +165,7 @@ public partial class HomePage : ContentPage
 
         Med5Button.Text = originalName + " Pressed";
 
+        controller.DisplayNumber(5);
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -197,6 +197,7 @@ public partial class HomePage : ContentPage
 
         Med6Button.Text = originalName + " Pressed";
 
+        controller.DisplayNumber(6);
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -228,6 +229,7 @@ public partial class HomePage : ContentPage
 
         Med7Button.Text = originalName + " Pressed";
 
+        controller.DisplayNumber(7);
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -259,6 +261,7 @@ public partial class HomePage : ContentPage
 
         Med8Button.Text = originalName + " Pressed";
 
+        controller.DisplayNumber(8);
         ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
