@@ -24,7 +24,7 @@ namespace MinMaxApp
             }
             _httpClient = new HttpClient();
             //_esp32Url = $"http://{esp32IpAddress}/";
-            _esp32Url = "http://"+wifiIpAddress;
+            _esp32Url = wifiIpAddress;
         }
 
         public async Task<bool> DisplayNumber(int number)

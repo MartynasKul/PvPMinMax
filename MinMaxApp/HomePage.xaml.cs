@@ -37,10 +37,10 @@ public partial class HomePage : ContentPage
         string originalName = Med1Button.Text;
 
         Med1Button.Text = originalName + " Pressed";
-        controller.DisplayNumber(1);
+        await controller.DisplayNumber(1);
         Debug.WriteLine("ABOBA"+controller.DisplayNumber(1));
         
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -55,11 +55,9 @@ public partial class HomePage : ContentPage
 
                 NotifyRepeatInterval = TimeSpan.FromSeconds(2)
                 // galima dadedti kada repeatinti n shit
-
             }
         };
-
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
 
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
@@ -73,8 +71,8 @@ public partial class HomePage : ContentPage
 
         Med2Button.Text = originalName + " Pressed";
 
-        controller.DisplayNumber(2);
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        await controller.DisplayNumber(2);
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -92,7 +90,7 @@ public partial class HomePage : ContentPage
             }
         };
 
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
         
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
@@ -106,8 +104,8 @@ public partial class HomePage : ContentPage
 
         Med3Button.Text = originalName + " Pressed";
 
-        controller.DisplayNumber(3);
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        await controller.DisplayNumber(3);
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -125,7 +123,7 @@ public partial class HomePage : ContentPage
             }
         };
 
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
         //Navigation.PushAsync(new SectionSettings());
@@ -137,8 +135,8 @@ public partial class HomePage : ContentPage
 
         Med4Button.Text = originalName + " Pressed";
 
-        controller.DisplayNumber(4);
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        await controller.DisplayNumber(4);
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -156,7 +154,7 @@ public partial class HomePage : ContentPage
             }
         };
 
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
         //Navigation.PushAsync(new SectionSettings());
@@ -168,8 +166,8 @@ public partial class HomePage : ContentPage
 
         Med5Button.Text = originalName + " Pressed";
 
-        controller.DisplayNumber(5);
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        await controller.DisplayNumber(5);
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -187,7 +185,7 @@ public partial class HomePage : ContentPage
             }
         };
 
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
@@ -200,8 +198,8 @@ public partial class HomePage : ContentPage
 
         Med6Button.Text = originalName + " Pressed";
 
-        controller.DisplayNumber(6);
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        await controller.DisplayNumber(6);
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -219,7 +217,7 @@ public partial class HomePage : ContentPage
             }
         };
 
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
@@ -232,8 +230,8 @@ public partial class HomePage : ContentPage
 
         Med7Button.Text = originalName + " Pressed";
 
-        controller.DisplayNumber(7);
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        await controller.DisplayNumber(7);
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -251,7 +249,7 @@ public partial class HomePage : ContentPage
             }
         };
 
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
@@ -264,8 +262,8 @@ public partial class HomePage : ContentPage
 
         Med8Button.Text = originalName + " Pressed";
 
-        controller.DisplayNumber(8);
-        ///Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
+        await controller.DisplayNumber(8);
+        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
             NotificationId = 1,
@@ -283,7 +281,7 @@ public partial class HomePage : ContentPage
             }
         };
 
-        LocalNotificationCenter.Current.Show(request);
+        await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync("//SectionSettings");
