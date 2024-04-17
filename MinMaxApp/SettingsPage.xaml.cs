@@ -10,7 +10,7 @@ public partial class SettingsPage : ContentPage
 
     private async void ReturnToHomePage(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new HomePage());
+        //Navigation.PushAsync(new HomePage());
         await Shell.Current.GoToAsync("//HomePage");
     }
 }
