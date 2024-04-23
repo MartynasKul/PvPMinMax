@@ -9,8 +9,24 @@ public partial class HomePage : ContentPage
 	public HomePage()
 	{
 		InitializeComponent();
-        LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped; 
-	}
+        LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
+        Loaded += OnPageLoaded;
+
+        
+    }
+
+    private void OnPageLoaded(object sender, EventArgs e)
+    {
+        LocalDatabase db = new LocalDatabase();
+        Med1Button.Text = db.GetCompartment(0).ToString();
+        Med2Button.Text = db.GetCompartment(1).ToString();
+        Med3Button.Text = db.GetCompartment(2).ToString();
+        Med4Button.Text = db.GetCompartment(3).ToString();
+        Med5Button.Text = db.GetCompartment(4).ToString();
+        Med6Button.Text = db.GetCompartment(5).ToString();
+        Med7Button.Text = db.GetCompartment(6).ToString();
+        Med8Button.Text = db.GetCompartment(7).ToString();
+    }
 
     private void Current_NotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
     {
@@ -33,7 +49,7 @@ public partial class HomePage : ContentPage
 
     private async void OnMed1Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b1";
+        int buttonID = 0;
         string originalName = Med1Button.Text;
 
         Med1Button.Text = originalName + " Pressed";
@@ -61,12 +77,12 @@ public partial class HomePage : ContentPage
 
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
     private async void OnMed2Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b2";
+        int buttonID = 1;
         string originalName = Med2Button.Text;
 
         Med2Button.Text = originalName + " Pressed";
@@ -91,15 +107,15 @@ public partial class HomePage : ContentPage
         };
 
         await LocalNotificationCenter.Current.Show(request);
-        
+
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
     private async void OnMed3Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b3";
+        int buttonID = 2;
         string originalName = Med3Button.Text;
 
         Med3Button.Text = originalName + " Pressed";
@@ -125,12 +141,12 @@ public partial class HomePage : ContentPage
 
         await LocalNotificationCenter.Current.Show(request);
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
     private async void OnMed4Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b4";
+        int buttonID = 3;
         string originalName = Med4Button.Text;
 
         Med4Button.Text = originalName + " Pressed";
@@ -156,12 +172,12 @@ public partial class HomePage : ContentPage
 
         await LocalNotificationCenter.Current.Show(request);
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
     private async void OnMed5Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b5";
+        int buttonID = 4;
         string originalName = Med5Button.Text;
 
         Med5Button.Text = originalName + " Pressed";
@@ -188,12 +204,12 @@ public partial class HomePage : ContentPage
         await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
     private async void OnMed6Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b6";
+        int buttonID = 5;
         string originalName = Med6Button.Text;
 
         Med6Button.Text = originalName + " Pressed";
@@ -220,12 +236,12 @@ public partial class HomePage : ContentPage
         await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
     private async void OnMed7Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b7";
+        int buttonID = 6;
         string originalName = Med7Button.Text;
 
         Med7Button.Text = originalName + " Pressed";
@@ -252,12 +268,12 @@ public partial class HomePage : ContentPage
         await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
     private async void OnMed8Clicked(object sender, EventArgs e)
     {
-        string buttonId = "b8";
+        int buttonID = 7;
         string originalName = Med8Button.Text;
 
         Med8Button.Text = originalName + " Pressed";
@@ -284,7 +300,7 @@ public partial class HomePage : ContentPage
         await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
-        await Shell.Current.GoToAsync("//SectionSettings");
+        await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
     }
 

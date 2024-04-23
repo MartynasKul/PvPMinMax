@@ -42,15 +42,9 @@ namespace MinMaxApp
             }
         }
 
-        public override string ToString() // isvedimui i faila
+        public override string ToString()
         {
-            string line = "";
-            line += medName + ";" + amount + ";" + reminderAmount + ";";
-            foreach (var timeAmount in TimeAmounts) 
-            {
-                line += timeAmount.hour + ";" + timeAmount.minute +";";
-            }
-            return line;
+            return $"{this.medName} {this.amount} {this.reminderAmount}";
         }
     }
 }
