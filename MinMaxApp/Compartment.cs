@@ -44,7 +44,16 @@ namespace MinMaxApp
 
         public override string ToString()
         {
-            return $"{this.medName} {this.amount} {this.reminderAmount}";
+            if (this.amount <= 0)
+                return "+";
+
+            string spelling = "kartą";
+
+            if (this.reminderAmount > 1 && this.reminderAmount < 10)
+                spelling = "kartus";
+         
+
+            return $"{this.medName}\nKiekis: {this.amount}\n{this.reminderAmount} {spelling} per dieną";
         }
     }
 }

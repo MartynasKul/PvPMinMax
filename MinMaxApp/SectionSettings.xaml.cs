@@ -5,7 +5,7 @@ namespace MinMaxApp;
 [QueryProperty(nameof(CompartmentID), "compartment")]
 public partial class SectionSettings : ContentPage
 {
-    public int CompartmentID 
+    public int CompartmentID
     {
         set
         {

@@ -18,14 +18,25 @@ public partial class HomePage : ContentPage
     private void OnPageLoaded(object sender, EventArgs e)
     {
         LocalDatabase db = new LocalDatabase();
-        Med1Button.Text = db.GetCompartment(0).ToString();
-        Med2Button.Text = db.GetCompartment(1).ToString();
-        Med3Button.Text = db.GetCompartment(2).ToString();
-        Med4Button.Text = db.GetCompartment(3).ToString();
-        Med5Button.Text = db.GetCompartment(4).ToString();
-        Med6Button.Text = db.GetCompartment(5).ToString();
-        Med7Button.Text = db.GetCompartment(6).ToString();
-        Med8Button.Text = db.GetCompartment(7).ToString();
+        
+
+        for(int i = 1; i <= 8; i++)
+        {
+            string btnName = $"Med{i}Button";
+            Button medButton = this.FindByName<Button>(btnName);
+            if(medButton == null)
+            {
+                break;
+            }
+            medButton.Text = db.GetCompartment(i-1).ToString();
+            if (medButton.Text.Equals("+"))
+                medButton.FontSize = 60;
+            else
+                medButton.FontSize = 18;
+        }
+
+        
+
     }
 
     private void Current_NotificationActionTapped(Plugin.LocalNotification.EventArgs.NotificationActionEventArgs e)
