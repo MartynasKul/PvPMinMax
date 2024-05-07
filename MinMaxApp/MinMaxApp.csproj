@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="InTheHand.Net.Bluetooth" Version="4.1.43" />
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.4" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />

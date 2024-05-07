@@ -1,3 +1,4 @@
+using InTheHand.Net.Sockets;
 using Plugin.LocalNotification;
 using System.Diagnostics;
 
@@ -5,14 +6,35 @@ namespace MinMaxApp;
 public partial class HomePage : ContentPage
 {
     ESPController controller = new ESPController("http://192.168.4.1");
-    
-	public HomePage()
+
+    //Bluetooth
+    private BluetoothSerialControler bluetoothController;
+    private BluetoothClient bluetoothClient;
+    public HomePage()
 	{
 		InitializeComponent();
         LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
         Loaded += OnPageLoaded;
 
-        
+        //Bluetooth
+        bluetoothController = new BluetoothSerialControler();
+    }
+
+    //Bluetooth
+    private async Task<BluetoothClient> InitializeBluetoothConnection()
+    {
+        // Only initialize the connection if it's not already done
+        if (bluetoothClient == null || !bluetoothClient.Connected)
+        {
+            // Initialize Bluetooth connection here
+            bluetoothClient = await bluetoothController.ConnectToESP32Async("MinMaxBT");
+            // Handle potential errors or connection failures as needed
+            if (bluetoothClient == null)
+            {
+                await DisplayAlert("Error", "Failed to connect to the Bluetooth device.", "OK");
+            }
+        }
+        return bluetoothClient;
     }
 
     private void OnPageLoaded(object sender, EventArgs e)
@@ -64,9 +86,17 @@ public partial class HomePage : ContentPage
         string originalName = Med1Button.Text;
 
         Med1Button.Text = originalName + " Pressed";
-        await controller.DisplayNumber(1);
-        Debug.WriteLine("ABOBA"+controller.DisplayNumber(1));
-        
+
+        //Bluetooth
+        // Retrieve the shared BluetoothClient instance
+        BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+        if (bluetoothClient != null && bluetoothClient.Connected)
+        {
+            // Send the number 1 to the ESP32
+            bluetoothController.SendNumber(bluetoothClient, 1);
+        }
+
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
@@ -98,7 +128,14 @@ public partial class HomePage : ContentPage
 
         Med2Button.Text = originalName + " Pressed";
 
-        await controller.DisplayNumber(2);
+        // Retrieve the shared BluetoothClient instance
+        BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+        if (bluetoothClient != null && bluetoothClient.Connected)
+        {
+            // Send the number 1 to the ESP32
+            bluetoothController.SendNumber(bluetoothClient, 2);
+        }
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
         {
