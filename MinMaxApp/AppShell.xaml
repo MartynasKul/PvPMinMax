@@ -45,9 +45,14 @@
         <ShellContent 
             ContentTemplate="{DataTemplate local:SectionSettings}"
             Route="SectionSettings"
-            
-            
+
             />
+        <ShellContent 
+            ContentTemplate="{DataTemplate local:BluetoothConnectionScreen}"
+            Route="BluetoothConnectionScreen"
+
+            />
+        
 
 
 

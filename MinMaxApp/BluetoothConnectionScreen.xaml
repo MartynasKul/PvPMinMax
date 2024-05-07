@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MinMaxApp.BluetoothConnectionScreen"
+             Title="Bluetooth connection">
+    <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25"
+        Margin="50"
+        VerticalOptions="Center">
+
+        <Label 
+            x:Name="descriptionLabel"
+            Text="Start pairing by clicking the button below"
+            HorizontalOptions="Center" />
+
+        <ActivityIndicator 
+            x:Name="loadingIndicator"
+            IsVisible="False"
+            IsRunning="False"
+            HorizontalOptions="Center" />
+
+        <!-- Success img -->
+        <Image 
+            x:Name="successIndicator"
+            Source="success.png"
+            IsVisible="False"
+            HorizontalOptions="Center" />
+
+        <Button
+            x:Name="bluetoothButton"
+            Text="Connect" 
+            SemanticProperties.Hint="Initializes BT connection"
+            WidthRequest="200"
+            HorizontalOptions="Center" 
+            TextColor="White"
+            BackgroundColor="#3FB489"
+            Clicked="bluetoothButton_Clicked" />
+
+    </VerticalStackLayout>
+</ContentPage>

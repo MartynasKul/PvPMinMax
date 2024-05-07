@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using InTheHand.Net.Sockets;
 using InTheHand.Net;
 using InTheHand.Net.Bluetooth;
+using System.Diagnostics;
 
 namespace MinMaxApp
 {
@@ -20,6 +21,7 @@ namespace MinMaxApp
         public async Task<BluetoothClient> ConnectToESP32Async(string esp32Name)
         {
             var devices = await DiscoverDevicesAsync();
+
             var esp32Device = devices.FirstOrDefault(d => d.DeviceName == esp32Name);
 
             if (esp32Device != null)
