@@ -5,7 +5,6 @@ using System.Diagnostics;
 namespace MinMaxApp;
 public partial class HomePage : ContentPage
 {
-    ESPController controller = new ESPController("http://192.168.4.1");
 
     //Bluetooth
     private BluetoothSerialControler bluetoothController;
@@ -20,28 +19,12 @@ public partial class HomePage : ContentPage
         bluetoothController = new BluetoothSerialControler();
     }
 
-    //Bluetooth
-    private async Task<BluetoothClient> InitializeBluetoothConnection()
-    {
-        // Only initialize the connection if it's not already done
-        if (bluetoothClient == null || !bluetoothClient.Connected)
-        {
-            // Initialize Bluetooth connection here
-            bluetoothClient = await bluetoothController.ConnectToESP32Async("MinMaxBT");
-            // Handle potential errors or connection failures as needed
-            if (bluetoothClient == null)
-            {
-                await DisplayAlert("Error", "Failed to connect to the Bluetooth device.", "OK");
-            }
-        }
-        return bluetoothClient;
-    }
+
 
     private void OnPageLoaded(object sender, EventArgs e)
     {
         LocalDatabase db = new LocalDatabase();
         
-
         for(int i = 1; i <= 8; i++)
         {
             string btnName = $"Med{i}Button";
@@ -65,11 +48,11 @@ public partial class HomePage : ContentPage
     {
         if (e.IsDismissed)
         {
-            LocalNotificationCenter.Current.CancelAll();
+            LocalNotificationCenter.Current.Cancel();
         }
         else if (e.IsTapped) 
         {
-            LocalNotificationCenter.Current.CancelAll();
+            LocalNotificationCenter.Current.Cancel();
         }
         
         throw new NotImplementedException();
@@ -89,32 +72,18 @@ public partial class HomePage : ContentPage
 
         //Bluetooth
         // Retrieve the shared BluetoothClient instance
-        BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
 
-        if (bluetoothClient != null && bluetoothClient.Connected)
+        if(BluetoothManager.BTConnectionState())
         {
-            // Send the number 1 to the ESP32
-            bluetoothController.SendNumber(bluetoothClient, 1);
-        }
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
 
-        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med1Button.Text ,
-            Description = Med1Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            
-            Schedule = new NotificationRequestSchedule
+            if (bluetoothClient != null && bluetoothClient.Connected)
             {
-                NotifyTime = DateTime.Now.AddSeconds(2),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(2)
-                // galima dadedti kada repeatinti n shit
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 1);
             }
-        };
-        await LocalNotificationCenter.Current.Show(request);
+        }
+        
 
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
@@ -129,32 +98,17 @@ public partial class HomePage : ContentPage
         Med2Button.Text = originalName + " Pressed";
 
         // Retrieve the shared BluetoothClient instance
-        BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
 
-        if (bluetoothClient != null && bluetoothClient.Connected)
-        {
-            // Send the number 1 to the ESP32
-            bluetoothController.SendNumber(bluetoothClient, 2);
-        }
-        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med2Button.Text,
-            Description = Med2Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
+            if (bluetoothClient != null && bluetoothClient.Connected)
             {
-                NotifyTime = DateTime.Now.AddSeconds(10),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
-                // galima dadedti kada repeatinti n shit
-
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 2);
             }
-        };
-
-        await LocalNotificationCenter.Current.Show(request);
+        }
+        
 
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
@@ -168,26 +122,7 @@ public partial class HomePage : ContentPage
 
         Med3Button.Text = originalName + " Pressed";
 
-        await controller.DisplayNumber(3);
-        //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med3Button.Text,
-            Description = Med3Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
-            {
-                NotifyTime = DateTime.Now.AddSeconds(10),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
-                // galima dadedti kada repeatinti n shit
-
-            }
-        };
-
-        await LocalNotificationCenter.Current.Show(request);
+       
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
@@ -199,26 +134,8 @@ public partial class HomePage : ContentPage
 
         Med4Button.Text = originalName + " Pressed";
 
-        await controller.DisplayNumber(4);
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med4Button.Text,
-            Description = Med4Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
-            {
-                NotifyTime = DateTime.Now.AddSeconds(10),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
-                // galima dadedti kada repeatinti n shit
-
-            }
-        };
-
-        await LocalNotificationCenter.Current.Show(request);
+        
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
@@ -230,26 +147,8 @@ public partial class HomePage : ContentPage
 
         Med5Button.Text = originalName + " Pressed";
 
-        await controller.DisplayNumber(5);
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med5Button.Text,
-            Description = Med5Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
-            {
-                NotifyTime = DateTime.Now.AddSeconds(10),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
-                // galima dadedti kada repeatinti n shit
-
-            }
-        };
-
-        await LocalNotificationCenter.Current.Show(request);
+        
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
@@ -262,26 +161,8 @@ public partial class HomePage : ContentPage
 
         Med6Button.Text = originalName + " Pressed";
 
-        await controller.DisplayNumber(6);
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med6Button.Text,
-            Description = Med6Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
-            {
-                NotifyTime = DateTime.Now.AddSeconds(10),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
-                // galima dadedti kada repeatinti n shit
-
-            }
-        };
-
-        await LocalNotificationCenter.Current.Show(request);
+        
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
@@ -294,26 +175,7 @@ public partial class HomePage : ContentPage
 
         Med7Button.Text = originalName + " Pressed";
 
-        await controller.DisplayNumber(7);
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med7Button.Text,
-            Description = Med7Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
-            {
-                NotifyTime = DateTime.Now.AddSeconds(10),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
-                // galima dadedti kada repeatinti n shit
-
-            }
-        };
-
-        await LocalNotificationCenter.Current.Show(request);
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
@@ -326,27 +188,8 @@ public partial class HomePage : ContentPage
 
         Med8Button.Text = originalName + " Pressed";
 
-        await controller.DisplayNumber(8);
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        var request = new NotificationRequest
-        {
-            NotificationId = 1,
-            Title = "BEMEBO",
-            Subtitle = Med8Button.Text,
-            Description = Med8Button.Text + " skilties atidarymas",
-            BadgeNumber = 42,
-            Schedule = new NotificationRequestSchedule
-            {
-                NotifyTime = DateTime.Now.AddSeconds(10),
-
-                NotifyRepeatInterval = TimeSpan.FromSeconds(10)
-                // galima dadedti kada repeatinti n shit
-
-            }
-        };
-
-        await LocalNotificationCenter.Current.Show(request);
-
+        
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
