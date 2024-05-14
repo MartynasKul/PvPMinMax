@@ -24,7 +24,7 @@
 		<ApplicationTitle>MinMaxApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.minmaxapp1</ApplicationId>
+		<ApplicationId>com.companyname.minmaxapp</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
