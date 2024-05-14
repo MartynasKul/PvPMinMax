@@ -30,6 +30,7 @@ namespace MinMaxApp
                 BluetoothClient client = new BluetoothClient();
                 Console.WriteLine("RASTAS IRENGINYS: " + esp32Device.DeviceName);
                 client.Connect(esp32Device.DeviceAddress, BluetoothService.SerialPort);
+                
                 return client;
             }
 

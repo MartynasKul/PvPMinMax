@@ -14,6 +14,7 @@ namespace MinMaxApp
 
         private BluetoothSerialControler _bluetoothController;
         private BluetoothClient _bluetoothClient;
+        private static bool deviceBtConnected = false;
 
         private BluetoothManager()
         {
@@ -27,6 +28,16 @@ namespace MinMaxApp
                 _bluetoothClient = await _bluetoothController.ConnectToESP32Async("MinMaxBT");
             }
             return _bluetoothClient;
+        }
+
+        public static bool BTConnectionState()
+        {
+            return deviceBtConnected;
+        }
+
+        public static void SetBTConnectionState(bool state)
+        {
+            deviceBtConnected = state;
         }
     }
 }

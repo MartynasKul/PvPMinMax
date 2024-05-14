@@ -57,6 +57,8 @@ namespace MinMaxApp
                 successIndicator.Opacity = 0;
                 successIndicator.IsVisible = true; // Show the success indicator
                 await successIndicator.FadeTo(1, 2000);
+                BluetoothManager.SetBTConnectionState(true);
+ 
 
 
 
