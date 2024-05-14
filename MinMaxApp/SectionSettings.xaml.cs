@@ -1,10 +1,14 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Xml.Linq;
 namespace MinMaxApp;
 
 [QueryProperty(nameof(CompartmentID), "compartment")]
 public partial class SectionSettings : ContentPage
 {
+    private int remindersCounter = 0;
+    private int medsCounter = 0;
+
+
     public int CompartmentID
     {
         set
@@ -17,10 +21,36 @@ public partial class SectionSettings : ContentPage
 
 	public SectionSettings()
 	{
-		InitializeComponent();
+
+        InitializeComponent();
+        remindersCounter = int.Parse(remAmmount.Text);
+        medsCounter = int.Parse(medAmmount.Text);
+
 
     }
 
+    private void OnAddDatesClicked(object sender, EventArgs e)
+    {
+        datesContainer.Children.Clear();  // Clear any existing DatePickers
+
+        if (int.TryParse(remAmmount.Text, out int numberOfDates) && numberOfDates > 0)
+        {
+            for (int i = 0; i < numberOfDates; i++)
+            {
+                var datePicker = new TimePicker
+                {
+                    TextColor = Colors.White,
+                    BackgroundColor = Color.Parse("#2B5B54")
+                };
+
+                datesContainer.Children.Add(datePicker);
+            }
+        }
+        else
+        {
+            DisplayAlert("Klaida", "Netinkama įvestis", "Supratau");
+        }
+    }
 
     private void DoTheThing(int value)
     {
@@ -54,5 +84,37 @@ public partial class SectionSettings : ContentPage
 
         await Shell.Current.GoToAsync("//HomePage");
         //Navigation.PushAsync(new SectionSettings());
+    }
+
+    private void OnIncreaseClicked(object sender, EventArgs e)
+    {
+        remindersCounter++;
+        remAmmount.Text = remindersCounter.ToString();
+        OnAddDatesClicked(remAmmount, new EventArgs());
+    }
+
+    private void OnDecreaseClicked(object sender, EventArgs e)
+    {
+        if (remindersCounter == 1)
+            return;
+
+        remindersCounter--;
+        remAmmount.Text = remindersCounter.ToString();
+        OnAddDatesClicked(remAmmount, new EventArgs());
+    }
+
+    private void OnMedsIncreaseClicked(object sender, EventArgs e)
+    {
+        medsCounter++;
+        medAmmount.Text = medsCounter.ToString();
+    }
+
+    private void OnMedsDecreaseClicked(object sender, EventArgs e)
+    {
+        if (medsCounter == 1)
+            return;
+
+        medsCounter--;
+        medAmmount.Text = medsCounter.ToString();
     }
 }

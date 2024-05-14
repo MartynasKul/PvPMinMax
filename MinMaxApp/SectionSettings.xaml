@@ -24,7 +24,11 @@
 
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
 
-                <Label Text="Vaistų pavadinimas" TextColor="Black" HorizontalTextAlignment="Center"/>
+                <Label  Text="Vaistų pavadinimas"
+                        FontSize="20"
+                        TextColor="Black"
+                        HorizontalOptions="Center"
+                        />
                 <Frame
                     CornerRadius="10"
                     BorderColor="#2B5B54"
@@ -38,55 +42,124 @@
 
                 </Frame>
 
-                <Label Text="Priminimo vaistų kiekis" TextColor="Black" HorizontalTextAlignment="Center"/>
-                <Frame
-                    CornerRadius="10"
-                    BorderColor="#2B5B54"
-                    BackgroundColor="#2B5B54"
-                    Padding="10"
-                    Margin="5"
-                    
-                    >
-                    <StackLayout>
-                        <Slider Minimum="0" Maximum="25" BackgroundColor="#2B5B54" ValueChanged="MedAmmountChanged"/>
-                        <Label x:Name="medAmmount"
-                        
-                            Text=""
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
-                               TextColor="White"/>
+
+                <Label  Text="Priminimo vaistų kiekis"
+                        FontSize="20"
+                        TextColor="Black"
+                        HorizontalOptions="Center"
+                        />
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="10">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Text="-" Clicked="OnMedsDecreaseClicked" TextColor="White" FontSize="24" FontAttributes="Bold" WidthRequest="50" HeightRequest="50" BackgroundColor="#2B5B54"/>
+                        <Label Grid.Column="1" x:Name="medAmmount" TextColor="Black" Text="0" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Button Grid.Column="2" Text="+" Clicked="OnMedsIncreaseClicked" TextColor="White" FontSize="24" FontAttributes="Bold" WidthRequest="50" HeightRequest="50" BackgroundColor="#2B5B54"/>
+                    </Grid>
+                </StackLayout>
 
 
-                    </StackLayout>
-                </Frame>
+                <StackLayout Padding="20" Spacing="3">
+                    <Label Text="Pasirinkite dienas, kada reikia vartoti vaistus:"
+                           FontSize="20"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"/>
 
-                <Label Text="Priminimo laikas" TextColor="Black" HorizontalTextAlignment="Center"/>
-
-                <Label Text="Kartų per dieną" TextColor="Black" HorizontalTextAlignment="Center"/>
-                <Frame
-                    CornerRadius="10"
-                    BorderColor="#2B5B54"
-                    BackgroundColor="#2B5B54"
-                    Padding="10"
-                    Margin="5"
-    
-                    >
-                    <StackLayout>
-
-
-                        <Slider Minimum="0" Maximum="25" BackgroundColor="#2B5B54" ValueChanged="ReminderAmmountChanged"/>
-                        <Label x:Name="remAmmount"
-                            Text=""
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center" 
-                               TextColor="White"/>
+                    <StackLayout Orientation="Horizontal" Spacing="10" >
+                        <CheckBox x:Name="SundayCheckBox" Color="Black" Scale="1.4"/>
+                        <Label Text="Pirmadienis"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="15"
+                               />
                     </StackLayout>
 
-                </Frame>
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <CheckBox x:Name="MondayCheckBox" Color="Black" Scale="1.4"/>
+                        <Label Text="Antradienis"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="15"
+                               />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <CheckBox x:Name="TuesdayCheckBox" Color="Black" Scale="1.4"/>
+                        <Label Text="Trečiadienis"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="15"
+                               />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <CheckBox x:Name="WednesdayCheckBox" Color="Black" Scale="1.4"/>
+                        <Label Text="Ketvirtadienis"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="15"
+                               />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <CheckBox x:Name="ThursdayCheckBox" Color="Black" Scale="1.4"/>
+                        <Label Text="Penktadienis"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="15"
+                               />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <CheckBox x:Name="FridayCheckBox" Color="Black" Scale="1.4"/>
+                        <Label Text="Šeštadienis"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="15"
+                               />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <CheckBox x:Name="SaturdayCheckBox" Color="Black" Scale="1.4"/>
+                        <Label Text="Sekmadienis"
+                               VerticalOptions="Center"
+                               TextColor="Black"
+                               FontSize="15"
+                               />
+                    </StackLayout>
+                </StackLayout>
 
 
 
 
+                <Label  Text="Priminimų per dieną skaičius:"
+                        FontSize="20"
+                        TextColor="Black"
+                        HorizontalOptions="Center"
+                        Margin="10"/>
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="10">
+                    <Grid ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Text="-" Clicked="OnDecreaseClicked" TextColor="White" FontSize="24" FontAttributes="Bold" WidthRequest="50" HeightRequest="50" BackgroundColor="#2B5B54"/>
+                        <Label Grid.Column="1" x:Name="remAmmount" TextColor="Black" Text="0" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Button Grid.Column="2" Text="+" Clicked="OnIncreaseClicked" TextColor="White" FontSize="24" FontAttributes="Bold" WidthRequest="50" HeightRequest="50" BackgroundColor="#2B5B54"/>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Padding="20" Spacing="10">
+                    <StackLayout x:Name="datesContainer"/>
+                </StackLayout>
 
 
             </StackLayout>
