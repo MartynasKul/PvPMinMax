@@ -55,7 +55,8 @@ namespace MinMaxApp
         private async void OnCounterClicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new ChooseConnectionPage());
-            await Shell.Current.GoToAsync("//ChooseConnectionPage"); // for now sitaip naviguoti
+            //await Shell.Current.GoToAsync("//ChooseConnectionPage"); // for now sitaip naviguoti einam kiauriai i bluetooth prisijungima
+            await Shell.Current.GoToAsync("//BluetoothConnectionScreen");
         }
         private async void HomeClicked(object sender, EventArgs e)
         {

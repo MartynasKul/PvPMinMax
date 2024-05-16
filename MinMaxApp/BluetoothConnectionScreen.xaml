@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MinMaxApp.BluetoothConnectionScreen"
-             Title="Bluetooth connection">
+             Title="Prisijungimas">
     <VerticalStackLayout
         Padding="30,0"
         Spacing="25"
@@ -11,7 +11,7 @@
 
         <Label 
             x:Name="descriptionLabel"
-            Text="Start pairing by clicking the button below"
+            Text="Pradėkite prisijungimą paspaudę Prisijungti mygtuką"
             HorizontalOptions="Center" />
 
         <ActivityIndicator 
@@ -29,7 +29,7 @@
 
         <Button
             x:Name="bluetoothButton"
-            Text="Connect" 
+            Text="Prisijungti" 
             SemanticProperties.Hint="Initializes BT connection"
             WidthRequest="200"
             HorizontalOptions="Center" 

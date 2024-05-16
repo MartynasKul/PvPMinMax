@@ -135,9 +135,6 @@
                     </StackLayout>
                 </StackLayout>
 
-
-
-
                 <Label  Text="Priminimų per dieną skaičius:"
                         FontSize="20"
                         TextColor="Black"
