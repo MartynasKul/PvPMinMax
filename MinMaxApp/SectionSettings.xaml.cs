@@ -1,4 +1,4 @@
-
+﻿
 using Plugin.LocalNotification;
 using System.Diagnostics;
 using System.Xml.Linq;
@@ -23,60 +23,162 @@ public partial class SectionSettings : ContentPage
 
     LocalDatabase db;
 
+    Compartment compartment;
+
 
     public SectionSettings()
 	{
 
         InitializeComponent();
-        remindersCounter = int.Parse(remAmmount.Text);
-        medsCounter = int.Parse(medAmmount.Text);
-
-
-        LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
 
         db = new LocalDatabase();
+        
 
+        LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
     }
 
-    private void OnAddDatesClicked(object sender, EventArgs e)
+    private void LoadDates()
     {
         datesContainer.Children.Clear();  // Clear any existing DatePickers
 
-        if (int.TryParse(remAmmount.Text, out int numberOfDates) && numberOfDates > 0)
-        {
-            for (int i = 0; i < numberOfDates; i++)
-            {
-                var datePicker = new TimePicker
-                {
-                    TextColor = Colors.White,
-                    BackgroundColor = Color.Parse("#2B5B54")
-                };
+        resetCheckBoxes();
 
-                datesContainer.Children.Add(datePicker);
+        if (compartment.Days == null || compartment.TimeAmounts == null) // if theres no dates picked beforehand, dont load anything
+            return;
+
+        for (int i = 0; i < compartment.Days.Count; i++)
+        {
+            int dayIndex = compartment.Days[i]; 
+
+            if (checkBoxHolder.Children[dayIndex] is StackLayout stackLayout)
+            {
+                if (stackLayout.Children.Count > 0 && stackLayout.Children[0] is CheckBox checkBox)
+                {
+                    checkBox.IsChecked = true;
+                }
             }
         }
-        else
+
+
+        for (int i = 0; i < compartment.TimeAmounts.Count; i++)
         {
-            DisplayAlert("Klaida", "Netinkama įvestis", "Supratau");
+            var datePicker = new TimePicker
+            {
+                TextColor = Colors.White,
+                BackgroundColor = Color.Parse("#2B5B54"),
+                Time = new TimeSpan(compartment.TimeAmounts[i].hour, compartment.TimeAmounts[i].minute, 0)
+
+            };
+
+            datesContainer.Children.Add(datePicker);
+        };
+        
+    }
+
+    private void resetCheckBoxes()
+    {
+        for (int i = 0; i < checkBoxHolder.Children.Count; i++)
+        {
+
+            if (checkBoxHolder.Children[i] is StackLayout stackLayout)
+            {
+                if (stackLayout.Children.Count > 0 && stackLayout.Children[0] is CheckBox checkBox)
+                {
+                    checkBox.IsChecked = false;
+                }
+            }
+
+
         }
+    }
+
+    private void AddNewDateEntry()
+    {
+
+        var datePicker = new TimePicker
+        {
+            TextColor = Colors.White,
+            BackgroundColor = Color.Parse("#2B5B54")
+        };
+
+        datesContainer.Children.Add(datePicker);
+    }
+
+    private void RemoveDateEntry()
+    {
+        IView item = datesContainer.Children[datesContainer.Children.Count-1];
+        datesContainer.Children.Remove(item);
     }
 
     private void LoadCompartmentInfo(int value)
     {
+
+       
         compartmentIdValue = value;
-        Compartment comp = db.GetCompartment(value);
-        MedName.Text = comp.medName;
-        medAmmount.Text = comp.amount.ToString();
-        remAmmount.Text = comp.reminderAmount.ToString();
+        compartment = db.GetCompartment(value);
+        MedName.Text = compartment.medName;
+        medAmmount.Text = compartment.amount.ToString();
+        remAmmount.Text = compartment.TimeAmounts.Count.ToString();
+
+        remindersCounter = int.Parse(remAmmount.Text);
+        medsCounter = int.Parse(medAmmount.Text);
+
+        LoadDates();
+
+
     }
 
     private void UpdateCompartmentInfo()
     {
-        Compartment comp = db.GetCompartment(compartmentIdValue);
-        MedName.Text = comp.medName;
+        compartment.medName = MedName.Text;
 
-        db.SetCompartment(compartmentIdValue, MedName.Text, int.Parse(medAmmount.Text), int.Parse(remAmmount.Text));
+        List<int> checkedIndices = new List<int>();
+
+        for (int i = 0; i < checkBoxHolder.Children.Count; i++)
+        {
+            if (checkBoxHolder.Children[i] is StackLayout stackLayout)
+            {
+                // Assuming checkbox is always the first child (CheckBox is 0th child, Label is 1st child)
+                if (stackLayout.Children[0] is CheckBox checkBox && checkBox.IsChecked)
+                {
+                    // Should be 1-based index from the xaml structure (Monday - 1, Tuesday - 2, etc.)
+                    checkedIndices.Add(i);
+                }
+            }
+        }
+
+        List<(int hour, int minute)> timePickerValues = new List<(int hour, int minute)>();
+
+        for (int i = 0; i < datesContainer.Children.Count; i++)
+        {
+            if (datesContainer.Children[i] is TimePicker timePicker)
+            {
+                
+                int hour = timePicker.Time.Hours;
+                int minute = timePicker.Time.Minutes;
+
+                timePickerValues.Add((hour, minute));
+            }
+        }
+
+        // Debug output
+        Debug.WriteLine("Checked Indices:");
+        foreach (var index in checkedIndices)
+        {
+            Debug.WriteLine(index);
+        }
+
+        Debug.WriteLine("Time Picker Values:");
+        foreach (var timeValue in timePickerValues)
+        {
+            Debug.WriteLine($"{timeValue.hour}:{timeValue.minute}");
+        }
+
+        // Assuming db is your database handler
+        // Update compartment information in the database using the gathered information
+        db.SetCompartment(compartmentIdValue, MedName.Text, int.Parse(medAmmount.Text), int.Parse(remAmmount.Text), timePickerValues, checkedIndices);
     }
+
 
 
     private void BackButtonClicked(object sender, EventArgs e) 
@@ -101,14 +203,12 @@ public partial class SectionSettings : ContentPage
     {
         LocalNotificationCenter.Current.CancelAll();
 
-        Compartment comp = db.GetCompartment(compartmentIdValue);
-
         DateTime notifyDate = new DateTime();
 
-        if (comp.TimeAmounts.Count > 0)
-            notifyDate = DateTime.Now.AddSeconds(comp.TimeAmounts[0].hour * 3600 + comp.TimeAmounts[0].minute * 60);
+        if (compartment.TimeAmounts.Count > 0)
+            notifyDate = DateTime.Now.AddSeconds(compartment.TimeAmounts[0].hour * 3600 + compartment.TimeAmounts[0].minute * 60);
         else
-            notifyDate = DateTime.Now.AddSeconds(15); // 5 min sakykim
+            notifyDate = DateTime.Now.AddSeconds(60); // 1 min sakykim
 
 
 
@@ -118,7 +218,7 @@ public partial class SectionSettings : ContentPage
             NotificationId = compartmentIdValue,
             Title = "MinMax",
             Subtitle = $"{compartmentIdValue + 1} skiltis",
-            Description = $"Laikas i�gerti {MedName.Text}",
+            Description = $"Laikas išgerti {MedName.Text}",
             BadgeNumber = 42,
             Schedule = new NotificationRequestSchedule
             {
@@ -142,17 +242,17 @@ public partial class SectionSettings : ContentPage
     {
         remindersCounter++;
         remAmmount.Text = remindersCounter.ToString();
-        OnAddDatesClicked(remAmmount, new EventArgs());
+        AddNewDateEntry();
     }
 
     private void OnDecreaseClicked(object sender, EventArgs e)
     {
-        if (remindersCounter == 1)
+        if (remindersCounter == 0)
             return;
 
         remindersCounter--;
         remAmmount.Text = remindersCounter.ToString();
-        OnAddDatesClicked(remAmmount, new EventArgs());
+        RemoveDateEntry();
     }
 
     private void OnMedsIncreaseClicked(object sender, EventArgs e)
@@ -180,6 +280,7 @@ public partial class SectionSettings : ContentPage
         {
             // Decrement amount after tapping notification
             medAmmount.Text = (int.Parse(medAmmount.Text) - 1).ToString();
+
         }
 
         throw new NotImplementedException();

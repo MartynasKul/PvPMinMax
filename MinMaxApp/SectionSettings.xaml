@@ -63,7 +63,7 @@
                 </StackLayout>
 
 
-                <StackLayout Padding="20" Spacing="3">
+                <StackLayout x:Name="checkBoxHolder" Padding="20" Spacing="3">
                     <Label Text="Pasirinkite dienas, kada reikia vartoti vaistus:"
                            FontSize="20"
                            TextColor="Black"
@@ -72,7 +72,7 @@
                            HorizontalTextAlignment="Center"/>
 
                     <StackLayout Orientation="Horizontal" Spacing="10" >
-                        <CheckBox x:Name="SundayCheckBox" Color="Black" Scale="1.4"/>
+                        <CheckBox x:Name="MondayCheckBox" Color="Black" Scale="1.4"/>
                         <Label Text="Pirmadienis"
                                VerticalOptions="Center"
                                TextColor="Black"
@@ -81,7 +81,7 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="10">
-                        <CheckBox x:Name="MondayCheckBox" Color="Black" Scale="1.4"/>
+                        <CheckBox x:Name="TuesdayCheckBox" Color="Black" Scale="1.4"/>
                         <Label Text="Antradienis"
                                VerticalOptions="Center"
                                TextColor="Black"
@@ -90,7 +90,7 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="10">
-                        <CheckBox x:Name="TuesdayCheckBox" Color="Black" Scale="1.4"/>
+                        <CheckBox x:Name="WednesdayCheckBox" Color="Black" Scale="1.4"/>
                         <Label Text="Trečiadienis"
                                VerticalOptions="Center"
                                TextColor="Black"
@@ -99,7 +99,7 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="10">
-                        <CheckBox x:Name="WednesdayCheckBox" Color="Black" Scale="1.4"/>
+                        <CheckBox x:Name="ThursdayCheckBox" Color="Black" Scale="1.4"/>
                         <Label Text="Ketvirtadienis"
                                VerticalOptions="Center"
                                TextColor="Black"
@@ -108,7 +108,7 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="10">
-                        <CheckBox x:Name="ThursdayCheckBox" Color="Black" Scale="1.4"/>
+                        <CheckBox x:Name="FridayCheckBox" Color="Black" Scale="1.4"/>
                         <Label Text="Penktadienis"
                                VerticalOptions="Center"
                                TextColor="Black"
@@ -117,7 +117,7 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="10">
-                        <CheckBox x:Name="FridayCheckBox" Color="Black" Scale="1.4"/>
+                        <CheckBox x:Name="SaturdayCheckBox" Color="Black" Scale="1.4"/>
                         <Label Text="Šeštadienis"
                                VerticalOptions="Center"
                                TextColor="Black"
@@ -126,7 +126,7 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="10">
-                        <CheckBox x:Name="SaturdayCheckBox" Color="Black" Scale="1.4"/>
+                        <CheckBox x:Name="SundayCheckBox" Color="Black" Scale="1.4"/>
                         <Label Text="Sekmadienis"
                                VerticalOptions="Center"
                                TextColor="Black"

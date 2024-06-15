@@ -12,15 +12,24 @@ namespace MinMaxApp
         public string medName { get; set; } // vaisto pavadinimas
         public int amount { get; set; } // geriamu vaistu kiekis
         public int reminderAmount { get; set; }// priminimu kiekis
-        public List<(int hour, int minute)> TimeAmounts { get; set; } // laiko pridejimas
+        public List<(int hour, int minute)> TimeAmounts = new List<(int hour, int minute)>(); // laiko pridejimas
+        public List<int> Days = new List<int>();
 
         // Constructor
+        public Compartment(string name, int amount, int reminderAmount, List<(int hour, int minute)> times, List<int> days)
+        {
+            this.medName = name;
+            this.amount = amount;
+            this.reminderAmount = reminderAmount;
+            this.TimeAmounts = times;
+            this.Days = days;
+        }
+
         public Compartment(string name, int amount, int reminderAmount)
         {
             this.medName = name;
             this.amount = amount;
             this.reminderAmount = reminderAmount;
-            this.TimeAmounts = new List<(int hour, int minute)>();
         }
 
         // Method to add time amount to the list

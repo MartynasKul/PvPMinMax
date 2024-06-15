@@ -122,7 +122,18 @@ public partial class HomePage : ContentPage
 
         Med3Button.Text = originalName + " Pressed";
 
-       
+        // Retrieve the shared BluetoothClient instance
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 3);
+            }
+        }
+
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
@@ -134,8 +145,20 @@ public partial class HomePage : ContentPage
 
         Med4Button.Text = originalName + " Pressed";
 
+        // Retrieve the shared BluetoothClient instance
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 4);
+            }
+        }
+
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        
+
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
         //Navigation.PushAsync(new SectionSettings());
@@ -147,8 +170,19 @@ public partial class HomePage : ContentPage
 
         Med5Button.Text = originalName + " Pressed";
 
+        // Retrieve the shared BluetoothClient instance
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 5);
+            }
+        }
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        
+
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
@@ -161,8 +195,20 @@ public partial class HomePage : ContentPage
 
         Med6Button.Text = originalName + " Pressed";
 
+        // Retrieve the shared BluetoothClient instance
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 6);
+            }
+        }
+
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
-        
+
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
         await Shell.Current.GoToAsync($"//SectionSettings?compartment={buttonID}");
@@ -175,6 +221,18 @@ public partial class HomePage : ContentPage
 
         Med7Button.Text = originalName + " Pressed";
 
+        // Retrieve the shared BluetoothClient instance
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 7);
+            }
+        }
+
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
 
         //await Shell.Current.GoToAsync($"//SectionSettings?buttonId={buttonId}&originalButtonName={originalName}");
@@ -185,6 +243,18 @@ public partial class HomePage : ContentPage
     {
         int buttonID = 7;
         string originalName = Med8Button.Text;
+
+        // Retrieve the shared BluetoothClient instance
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                // Send the number 1 to the ESP32
+                bluetoothController.SendNumber(bluetoothClient, 8);
+            }
+        }
 
         Med8Button.Text = originalName + " Pressed";
 
