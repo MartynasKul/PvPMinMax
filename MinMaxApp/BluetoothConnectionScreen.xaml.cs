@@ -10,6 +10,9 @@ namespace MinMaxApp
         // Cancellinima pairinimo jei reiks, pridetas bus
 
         private bool isSearching = false;
+        private BluetoothSerialControler bluetoothSerialControler = new BluetoothSerialControler();
+        private BluetoothClient bluetoothClient;
+
 
         public BluetoothConnectionScreen()
         {
@@ -58,9 +61,9 @@ namespace MinMaxApp
                 successIndicator.IsVisible = true; // Show the success indicator
                 await successIndicator.FadeTo(1, 2000);
                 BluetoothManager.SetBTConnectionState(true);
- 
 
-
+                // siuncia dabartini laika
+                bluetoothSerialControler.SendCurrentTime(bluetoothClient);
 
                 // Navigate to the home page
                 await Shell.Current.GoToAsync("//HomePage");

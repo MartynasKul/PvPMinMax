@@ -1,4 +1,5 @@
 ﻿
+using InTheHand.Net.Sockets;
 using Plugin.LocalNotification;
 using System.Diagnostics;
 using System.Xml.Linq;
@@ -24,7 +25,7 @@ public partial class SectionSettings : ContentPage
     LocalDatabase db;
 
     Compartment compartment;
-
+    private BluetoothSerialControler bluetoothController;
 
     public SectionSettings()
 	{
@@ -35,6 +36,7 @@ public partial class SectionSettings : ContentPage
         
 
         LocalNotificationCenter.Current.NotificationActionTapped += Current_NotificationActionTapped;
+        bluetoothController = new BluetoothSerialControler();
     }
 
     private void LoadDates()
@@ -203,14 +205,41 @@ public partial class SectionSettings : ContentPage
     {
         LocalNotificationCenter.Current.CancelAll();
 
-        DateTime notifyDate = new DateTime();
+        // Get the time from each TimePicker in datesContainer
+        List<DateTime> notifyDates = new List<DateTime>();
+        foreach (var child in datesContainer.Children)
+        {
+            if (child is TimePicker timePicker)
+            {
+                DateTime now = DateTime.Now;
+                DateTime notifyDate = new DateTime(now.Year, now.Month, now.Day, timePicker.Time.Hours, timePicker.Time.Minutes, 0);
+                if (notifyDate < now)
+                {
+                    notifyDate = notifyDate.AddDays(1); // Schedule for the next day if time is earlier than now
+                }
+                notifyDates.Add(notifyDate);
+            }
+        }
 
-        if (compartment.TimeAmounts.Count > 0)
-            notifyDate = DateTime.Now.AddSeconds(compartment.TimeAmounts[0].hour * 3600 + compartment.TimeAmounts[0].minute * 60);
-        else
-            notifyDate = DateTime.Now.AddSeconds(60); // 1 min sakykim
+        if (notifyDates.Count == 0)
+        {
+            await DisplayAlert("Klaida", "Nepasirinkta jokia laiko data", "Supratau");
+            return;
+        }
 
+        int selectedNumber = int.Parse(medAmmount.Text);
 
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                bluetoothController.SendNumberAndReminderTime(bluetoothClient, selectedNumber, notifyDates.First());
+                bluetoothController.SendSection(bluetoothClient, compartmentIdValue);  // Send the section information
+                Console.WriteLine("Sekcija: " + compartmentIdValue);
+            }
+        }
 
         //Notifikaciju pradzia - sukuriamas requestas, ir poto jis parodomas.
         var request = new NotificationRequest
@@ -222,12 +251,11 @@ public partial class SectionSettings : ContentPage
             BadgeNumber = 42,
             Schedule = new NotificationRequestSchedule
             {
-                NotifyTime = notifyDate,
+                NotifyTime = notifyDates.First(),
                 RepeatType = NotificationRepeat.TimeInterval,
                 NotifyRepeatInterval = TimeSpan.FromSeconds(300),
                 NotifyAutoCancelTime = DateTime.Now.AddSeconds(600), // Kol kas baigiam siuntinet uz 3h
-                // reiktu pagal nustatymus situos sudeliot
-
+                                                                     // reiktu pagal nustatymus situos sudeliot
             }
         };
         UpdateCompartmentInfo();

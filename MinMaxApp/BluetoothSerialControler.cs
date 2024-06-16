@@ -30,7 +30,7 @@ namespace MinMaxApp
                 BluetoothClient client = new BluetoothClient();
                 Console.WriteLine("RASTAS IRENGINYS: " + esp32Device.DeviceName);
                 client.Connect(esp32Device.DeviceAddress, BluetoothService.SerialPort);
-                
+
                 return client;
             }
 
@@ -42,9 +42,41 @@ namespace MinMaxApp
             if (client != null && client.Connected)
             {
                 var stream = client.GetStream();
-                // Send the number as a single character
-                byte[] data = new byte[] { (byte)number.ToString()[0] };
-                Console.WriteLine("SIUNCIAMAS SKAICIUS I ESP:" + number);
+                string numberString = "N:" + number.ToString();
+                byte[] data = Encoding.ASCII.GetBytes(numberString);
+                stream.Write(data, 0, data.Length);
+            }
+        }
+
+        public void SendCurrentTime(BluetoothClient client)
+        {
+            if (client != null && client.Connected)
+            {
+                var stream = client.GetStream();
+                DateTime now = DateTime.Now;
+                string timeString = "T:" + now.ToString("yyyy-MM-dd HH:mm:ss");
+                byte[] data = Encoding.ASCII.GetBytes(timeString);
+                stream.Write(data, 0, data.Length);
+            }
+        }
+        public void SendNumberAndReminderTime(BluetoothClient client, int number, DateTime reminderTime)
+        {
+            if (client != null && client.Connected)
+            {
+                var stream = client.GetStream();
+                string message = $"RN:{number},{reminderTime.ToString("yyyy-MM-dd HH:mm:ss")}\n";
+                byte[] data = Encoding.ASCII.GetBytes(message);
+                stream.Write(data, 0, data.Length);
+            }
+        }
+
+        public void SendSection(BluetoothClient client, int section)
+        {
+            if (client != null && client.Connected)
+            {
+                var stream = client.GetStream();
+                string sectionMessage = $"S:{section}\n";  // Assuming 'S' is the identifier for section
+                byte[] data = Encoding.ASCII.GetBytes(sectionMessage);
                 stream.Write(data, 0, data.Length);
             }
         }
