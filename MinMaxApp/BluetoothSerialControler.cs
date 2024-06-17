@@ -81,5 +81,28 @@ namespace MinMaxApp
             }
         }
 
+        public void StartBreathingEffect(BluetoothClient client, int section)
+        {
+            if (client != null && client.Connected)
+            {
+                var stream = client.GetStream();
+                string startBreathingMessage = $"B:{section}\n";  // Assuming 'B' is the identifier for start breathing
+                byte[] data = Encoding.ASCII.GetBytes(startBreathingMessage);
+                stream.Write(data, 0, data.Length);
+                Console.WriteLine("PALEIDZIAMAS EFEKTAS SEKCIJOJE: " + section);
+            }
+        }
+
+        public void StopBreathingEffect(BluetoothClient client, int section)
+        {
+            if (client != null && client.Connected)
+            {
+                var stream = client.GetStream();
+                string stopBreathingMessage = $"E:{section}\n";  // Assuming 'E' is the identifier for stop breathing
+                byte[] data = Encoding.ASCII.GetBytes(stopBreathingMessage);
+                stream.Write(data, 0, data.Length);
+                Console.WriteLine("SUSTEBDOMAS EFEKTAS SEKCIJOJE: " + section);
+            }
+        }
     }
 }

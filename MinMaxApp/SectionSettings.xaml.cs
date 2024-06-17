@@ -112,7 +112,7 @@ public partial class SectionSettings : ContentPage
         datesContainer.Children.Remove(item);
     }
 
-    private void LoadCompartmentInfo(int value)
+    private async Task LoadCompartmentInfo(int value)
     {
 
        
@@ -127,7 +127,14 @@ public partial class SectionSettings : ContentPage
 
         LoadDates();
 
-
+        if (BluetoothManager.BTConnectionState())
+        {
+            BluetoothClient bluetoothClient = await BluetoothManager.Instance.GetBluetoothClient();
+            if (bluetoothClient != null && bluetoothClient.Connected)
+            {
+                bluetoothController.StartBreathingEffect(bluetoothClient, compartmentIdValue);
+            }
+        }
     }
 
     private void UpdateCompartmentInfo()
@@ -238,6 +245,7 @@ public partial class SectionSettings : ContentPage
                 bluetoothController.SendNumberAndReminderTime(bluetoothClient, selectedNumber, notifyDates.First());
                 bluetoothController.SendSection(bluetoothClient, compartmentIdValue);  // Send the section information
                 Console.WriteLine("Sekcija: " + compartmentIdValue);
+                bluetoothController.StopBreathingEffect(bluetoothClient, compartmentIdValue);
             }
         }
 
