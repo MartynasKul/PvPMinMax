@@ -242,8 +242,12 @@ public partial class SectionSettings : ContentPage
 
             if (bluetoothClient != null && bluetoothClient.Connected)
             {
-                bluetoothController.SendNumberAndReminderTime(bluetoothClient, selectedNumber, notifyDates.First());
-                bluetoothController.SendSection(bluetoothClient, compartmentIdValue);  // Send the section information
+                foreach (var notifyDate in notifyDates)
+                {
+                    bluetoothController.SendNumberAndReminderTime(bluetoothClient, selectedNumber, notifyDate);
+                    bluetoothController.SendSection(bluetoothClient, compartmentIdValue);  // Send the section information
+                }
+                
                 Console.WriteLine("Sekcija: " + compartmentIdValue);
                 bluetoothController.StopBreathingEffect(bluetoothClient, compartmentIdValue);
             }
